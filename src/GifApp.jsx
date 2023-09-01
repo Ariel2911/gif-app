@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { AddCategory } from './component/AddCategory';
-import { GifGrid } from './component/GifGrid';
+import { AddCategory, GifGrid } from './component';
 
 export const GifApp = () => {
   const [categories, setCategories] = useState(['saitama']);
