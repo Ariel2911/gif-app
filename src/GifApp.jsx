@@ -5,7 +5,8 @@ export const GifApp = () => {
   const [categories, setCategories] = useState(['L1', 'L2']);
 
   const onAddCategory = (newCategory) => {
-    setCategories([newCategory, ...categories]);
+    !categories.includes(newCategory) &&
+      setCategories([newCategory, ...categories]);
   };
 
   return (
