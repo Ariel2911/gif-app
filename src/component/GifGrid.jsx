@@ -9,12 +9,15 @@ export const GifGrid = ({ category }) => {
       <h3>{category}</h3>
 
       {isLoading && <p>Cargando...</p>}
-
-      <div className="card-grid">
-        {images.map(({ id, title, url }) => (
-          <GifGridItem key={id} title={title} url={url} />
-        ))}
-      </div>
+      {images.length > 0 ? (
+        <div className="card-grid">
+          {images.map(({ id, title, url }) => (
+            <GifGridItem key={id} title={title} url={url} />
+          ))}
+        </div>
+      ) : (
+        <p>No se encontraron imagenes</p>
+      )}
     </>
   );
 };
