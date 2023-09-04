@@ -55,4 +55,23 @@ describe('Pruebas en <AddCategory />', () => {
 
     expect(onNewCategory).toHaveBeenCalledTimes(0);
   });
+
+  test('debe comprobar que la función onNewCategory fue llamada con el valor de la caja de texto', () => {
+    const onNewCategory = jest.fn();
+
+    render(<AddCategory onNewCategory={onNewCategory} />);
+
+    const input = screen.getByRole('textbox');
+    const form = screen.getByRole('form');
+
+    fireEvent.input(input, { target: { value: inputValue } });
+
+    fireEvent.submit(form);
+
+    expect(input.value).toBe('');
+
+    expect(onNewCategory).toHaveBeenCalled();
+    expect(onNewCategory).toHaveBeenCalledTimes(1);
+    expect(onNewCategory).toHaveBeenCalledWith(inputValue);
+  });
 });
