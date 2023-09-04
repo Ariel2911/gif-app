@@ -24,4 +24,10 @@ describe('Pruebas en <GridGifItem />', () => {
     expect(src).toBe(url);
     expect(alt).toBe(title);
   });
+
+  test('debe de mostrar el título en el componente', () => {
+    render(<GifGridItem title={title} url={url} />);
+
+    expect(screen.getByText(title)).toBeTruthy();
+  });
 });
