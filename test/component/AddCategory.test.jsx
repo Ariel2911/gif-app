@@ -35,4 +35,24 @@ describe('Pruebas en <AddCategory />', () => {
 
     // screen.debug();
   });
+
+  test('debe comprobar que la función onNewCategory no es llamada cuando el valor de la caja de texto este vacia o tenga menos de 2 caracteres', () => {
+    const onNewCategory = jest.fn();
+
+    render(<AddCategory onNewCategory={onNewCategory} />);
+
+    const input = screen.getByRole('textbox');
+    const form = screen.getByRole('form');
+
+    fireEvent.input(input, { target: { value: '' } });
+    fireEvent.submit(form);
+
+    fireEvent.input(input, { target: { value: 'a' } });
+    fireEvent.submit(form);
+
+    fireEvent.input(input, { target: { value: 'ab' } });
+    fireEvent.submit(form);
+
+    expect(onNewCategory).toHaveBeenCalledTimes(0);
+  });
 });
